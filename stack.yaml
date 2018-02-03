@@ -1,0 +1,11 @@
+resolver: lts-10.4
+
+packages:
+- .
+
+extra-deps:
+- avro-0.2.0.0
+- hw-kafka-avro-1.3.0
+- pure-zlib-0.6
+- hedgehog-0.5
+- hw-hspec-hedgehog-0.1.0.0
