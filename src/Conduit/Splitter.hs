@@ -10,6 +10,7 @@ import           Data.ByteString.Lazy        (ByteString, fromStrict, null,
                                               toStrict)
 import qualified Data.ByteString.Lazy        as BS
 import           Data.ByteString.Lazy.Search (split)
+import           Data.Foldable
 import           Data.Monoid
 
 splitDelim :: Monad m => StrictBS.ByteString -> Conduit ByteString m ByteString
@@ -23,7 +24,7 @@ splitDelim delim = go mempty
             [] -> yieldB bldr >> go mempty
             [x] -> go (bldr <> BB.lazyByteString x)
             (x:bs) -> do
-              let (xs, mbLast) = foldr (\x (as, l) -> (maybe as (:as) l, Just x)) ([], Nothing) bs
+              let (xs, mbLast) = foldl' (\(as, l) x -> (maybe as (:as) l, Just x)) ([], Nothing) bs
               let lastB = maybe mempty BB.lazyByteString mbLast
               yieldB (bldr <> BB.lazyByteString x)
               forM_ xs yieldNonEmpty
