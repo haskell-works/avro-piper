@@ -5,7 +5,7 @@
 -- hash: 2b7a6b2c9a2a1dd0bdc676c5dc3a7c4dea3f7ca3c47520edac896dd69b533e3d
 
 name:           avro-piper
-version:        0.1.0.0
+version:        1.0.0
 description:    Please see the README on Github at <https://github.com/alexeyraga/avro-piper#readme>
 homepage:       https://github.com/alexeyraga/avro-piper#readme
 bug-reports:    https://github.com/alexeyraga/avro-piper/issues
