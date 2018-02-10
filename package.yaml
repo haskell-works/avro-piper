@@ -1,6 +1,6 @@
 name:                avro-piper
-version:             0.1.0.0
-github:              "alexeyraga/avro-piper"
+version:             1.0.0
+github:              "haskell-works/avro-piper"
 license:             BSD3
 author:              "Alexey Raga"
 maintainer:          "alexey.raga@gmail.com"
@@ -17,7 +17,7 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on Github at <https://github.com/alexeyraga/avro-piper#readme>
+description:         Please see the README on Github at <https://github.com/haskell-works/avro-piper#readme>
 
 dependencies:
 - base >= 4.7 && < 5
