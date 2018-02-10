@@ -56,7 +56,7 @@ jobs:
       - deploy:
           command: |
             if [ "$CIRCLE_PROJECT_USERNAME" == "haskell-works" ]; then
-              if [[ "$CIRCLE_BRANCH" == CI ]]; then
+              if [[ "$CIRCLE_BRANCH" == "master" ]]; then
                 release
               fi
             fi
