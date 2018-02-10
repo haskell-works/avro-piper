@@ -9,4 +9,4 @@ unescape = foldr step ""
       'r' -> '\r':cs
       't' -> '\t':cs
       _   -> c:cs
-    step c cs        = (c:cs)
+    step c cs        = c:cs

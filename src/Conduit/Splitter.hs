@@ -29,5 +29,5 @@ splitDelim delim = go mempty
               yieldB (bldr <> BB.lazyByteString x)
               forM_ xs yieldNonEmpty
               go lastB
-    yieldNonEmpty bs = if (not $ BS.null bs) then yield bs else pure ()
+    yieldNonEmpty bs = if not $ BS.null bs then yield bs else pure ()
     yieldB b = yieldNonEmpty $ BB.toLazyByteString b
