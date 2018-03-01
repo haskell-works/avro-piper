@@ -34,8 +34,6 @@ main = do
     C.stdinC
     .| mapC fromStrict
     .| splitDelim (StrictC8.pack $ optDelimiter opt)
-    .| mapMC(\x -> liftIO (print $ ">>>---->>> " <> show (BS.length x)) >> pure x)
-
     .| mapMC (\x -> do
                         res <- decodeMessage sr x
                         case res of
