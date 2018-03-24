@@ -13,35 +13,35 @@ defaults: &defaults
 
     - restore_cache:
         keys:
-          - dot-stack-${CIRCLE_JOB}-{{ checksum "stack.yaml" }}-{{ checksum "avro-piper.cabal" }}
-          - dot-stack-${CIRCLE_JOB}-{{ checksum "stack.yaml" }}
-          - dot-stack-${CIRCLE_JOB}-{{ checksum "resolver.txt" }}
-          - dot-stack-resolver-${CIRCLE_JOB}-{{ checksum "resolver.txt" }}
+          - dot-stack-{{ arch }}-{{ checksum "stack.yaml" }}-{{ checksum "avro-piper.cabal" }}
+          - dot-stack-{{ arch }}-{{ checksum "stack.yaml" }}
+          - dot-stack-{{ arch }}-{{ checksum "resolver.txt" }}
+          - dot-stack-resolver-{{ arch }}-{{ checksum "resolver.txt" }}
     - run: stack setup
     - save_cache:
-        key: dot-stack-resolver-${CIRCLE_JOB}-{{ checksum "resolver.txt" }}
+        key: dot-stack-resolver-{{ arch }}-{{ checksum "resolver.txt" }}
         paths:
           - ~/.stack
     - save_cache:
-        key: dot-stack-${CIRCLE_JOB}-{{ checksum "stack.yaml" }}
+        key: dot-stack-{{ arch }}-{{ checksum "stack.yaml" }}
         paths:
           - ~/.stack
 
     - restore_cache:
-        key: stack-work-${CIRCLE_JOB}-{{ checksum "stack.yaml" }}
+        key: stack-work-{{ arch }}-{{ checksum "stack.yaml" }}
     - run: stack build --test --no-run-tests --dependencies-only
     - save_cache:
-        key: dot-stack-${CIRCLE_JOB}-{{ checksum "resolver.txt" }}
+        key: dot-stack-{{ arch }}-{{ checksum "resolver.txt" }}
         paths:
           - ~/.stack
 
     - run: stack build --test --no-run-tests
     - save_cache:
-        key: dot-stack-${CIRCLE_JOB}-{{ checksum "stack.yaml" }}-{{ checksum "avro-piper.cabal" }}
+        key: dot-stack-{{ arch }}-{{ checksum "stack.yaml" }}-{{ checksum "avro-piper.cabal" }}
         paths:
           - ~/.stack
     - save_cache:
-        key: stack-work-${CIRCLE_JOB}-{{ checksum "stack.yaml" }}
+        key: stack-work-{{ arch }}-{{ checksum "stack.yaml" }}
         paths: ~/build/.stack-work
 
     - run:
