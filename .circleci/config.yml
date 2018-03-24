@@ -58,7 +58,7 @@ jobs:
 
   mac-os:
     macos:
-    xcode: "9.0"
+      xcode: "9.0"
     <<: *defaults
 
       # - deploy:
@@ -74,3 +74,4 @@ workflows:
   build-test-lint:
     jobs:
       - linux
+      - mac-os
