@@ -54,7 +54,11 @@ jobs:
   linux:
     docker:
       - image: quay.io/haskell_works/stack-build-python
+    <<: *defaults
 
+  mac-os:
+    macos:
+    xcode: "9.0"
     <<: *defaults
 
       # - deploy:
