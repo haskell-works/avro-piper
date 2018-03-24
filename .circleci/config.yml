@@ -1,6 +1,6 @@
 version: 2.0
 jobs:
-  build:
+  linux:
     working_directory: ~/build
     docker:
       - image: quay.io/haskell_works/stack-build-python
@@ -60,3 +60,9 @@ jobs:
                 release
               fi
             fi
+
+workflows:
+  version: 2
+  build-test-lint:
+    jobs:
+      - linux
