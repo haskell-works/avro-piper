@@ -32,16 +32,22 @@ workflows:
           after-checkout:
           - restore_cache:
               keys:
-                - homebrew-itself-cache
+                - nix
           - run:
-              name: Install Brew Dependencies
-              command: brew install jq coreutils
+              name: Install Nix
+              command: curl https://nixos.org/nix/install | sh
+
+          - run:
+              name: Install dependencies
+              command: nix-env -i jq
 
           - save_cache:
-              key: homebrew-itself-cache
-              # I cache Homebrew itself, not the stuff that is installed with it
-              # because brew update takes up to 4 minutes for some reason.
-              paths: [/usr/local/Homebrew]
+              key: nix
+              paths:
+                - /nix
+                - ~/.nix-channels
+                - ~/.nix-defexpr
+                - ~/.nix-profile
 
           - restore_cache:
               keys:
