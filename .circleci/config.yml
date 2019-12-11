@@ -30,24 +30,26 @@ workflows:
           fail-incoherent-builds: false
           write-result-workspace: true
           after-checkout:
-          - restore_cache:
-              keys:
-                - nix
+          # - restore_cache:
+          #     keys:
+          #       - nix
           - run:
               name: Install Nix
-              command: curl https://nixos.org/nix/install | sh
+              command: |
+                curl https://nixos.org/nix/install | sh
+                # echo ". /Users/distiller/.nix-profile/etc/profile.d/nix.sh" >> $BASH_ENV
 
           - run:
               name: Install dependencies
-              command: nix-env -i jq
+              command: nix-env -i jq ghc cabal-install
 
-          - save_cache:
-              key: nix
-              paths:
-                - /nix
-                - ~/.nix-channels
-                - ~/.nix-defexpr
-                - ~/.nix-profile
+          # - save_cache:
+          #     key: nix
+          #     paths:
+          #       - /nix
+          #       - ~/.nix-channels
+          #       - ~/.nix-defexpr
+          #       - ~/.nix-profile
 
           - restore_cache:
               keys:
