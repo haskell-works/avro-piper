@@ -1,7 +1,9 @@
 cabal-version:  2.4
 name:           avro-piper
 version:        1.0.1
+category:       Tools
 description:    Please see the README on Github at <https://github.com/haskell-works/avro-piper#readme>
+synopsis:       A tool to decode Avro messages from Kafka
 homepage:       https://github.com/haskell-works/avro-piper#readme
 bug-reports:    https://github.com/haskell-works/avro-piper/issues
 author:         Alexey Raga
