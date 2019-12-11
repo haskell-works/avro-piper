@@ -41,7 +41,7 @@ workflows:
 
           - run:
               name: Install dependencies
-              command: nix-env -i jq ghc cabal-install
+              command: nix-env -i jq ghc cabal-install coreutils
 
           # - save_cache:
           #     key: nix
