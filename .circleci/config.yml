@@ -13,6 +13,7 @@ executors:
 workflows:
   multiple-ghc-build:
     jobs:
+
       - haskell/build-with-binary-cache:
           name: GHC 8.6.5
           executor: ghc-8_6_5
@@ -21,45 +22,39 @@ workflows:
           cabal-build-extra: --write-ghc-environment-files=ghc8.4.4+
           cabal-test-extra: --test-show-details=direct
 
-      - haskell/build-with-cci-cache:
-        name: Darwin
-        executor: darwin
-        run-tests: true
-        fail-incoherent-builds: false
-        write-result-workspace: true
-        after-checkout:
-          - restore_cache:
-              keys:
-                - homebrew-itself-cache
-          - run:
-              name: Install Brew Dependencies
-              command: brew install jq coreutils
+      # - haskell/build-with-cci-cache:
+      #   name: Darwin
+      #   executor: darwin
+      #   run-tests: true
+      #   fail-incoherent-builds: false
+      #   write-result-workspace: true
+      #   after-checkout:
+      #     - restore_cache:
+      #         keys:
+      #           - homebrew-itself-cache
+      #     - run:
+      #         name: Install Brew Dependencies
+      #         command: brew install jq coreutils
 
-          - save_cache:
-              key: homebrew-itself-cache
-              # I cache Homebrew itself, not the stuff that is installed with it
-              # because brew update takes up to 4 minutes for some reason.
-              paths: [/usr/local/Homebrew]
+      #     - save_cache:
+      #         key: homebrew-itself-cache
+      #         # I cache Homebrew itself, not the stuff that is installed with it
+      #         # because brew update takes up to 4 minutes for some reason.
+      #         paths: [/usr/local/Homebrew]
 
-          - restore_cache:
-              keys:
-                ghc-cache
+      #     - restore_cache:
+      #         keys:
+      #           ghc-cache
 
-          - run:
-              name: Install GHC and Cabal
-              command: |
-                sh ./.circleci/ghcup.sh
-                source ~/.bash_profile
-                ghcup install 8.6.5
-                # ghcup install-cabal 3.0.0.0
-          - save_cache:
-              key: ghc-cache
-              paths: [~/.ghcup]
+      #     - run:
+      #         name: Install GHC and Cabal
+      #         command: |
+      #           sh ./.circleci/ghcup.sh
+      #           source ~/.bash_profile
+      #           ghcup install 8.6.5
+      #           # ghcup install-cabal 3.0.0.0
+      #     - save_cache:
+      #         key: ghc-cache
+      #         paths: [~/.ghcup]
 
-          - run:
-              name: Install cabal-plan
-              command: |
-                curl -L https://github.com/haskell-works/cabal-plan/releases/download/v0.5.0.0/cabal-plan_x86_osx.tar.gz -o cabal-plan_x86_osx.tar.gz
-                tar zxvf cabal-plan_x86_osx.tar.gz -C /usr/local/bin cabal-plan
-                rm cabal-plan_x86_osx.tar.gz
 
