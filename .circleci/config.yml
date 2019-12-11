@@ -51,19 +51,19 @@ workflows:
           #       - ~/.nix-defexpr
           #       - ~/.nix-profile
 
-          - restore_cache:
-              keys:
-                ghc-cache
+          # - restore_cache:
+          #     keys:
+          #       ghc-cache
 
-          - run:
-              name: Install GHC and Cabal
-              command: |
-                sh ./.circleci/ghcup.sh
-                source ~/.bash_profile
-                ghcup install 8.6.5
-                # ghcup install-cabal 3.0.0.0
-          - save_cache:
-              key: ghc-cache
-              paths: [~/.ghcup]
+          # - run:
+          #     name: Install GHC and Cabal
+          #     command: |
+          #       sh ./.circleci/ghcup.sh
+          #       source ~/.bash_profile
+          #       ghcup install 8.6.5
+          #       # ghcup install-cabal 3.0.0.0
+          # - save_cache:
+          #     key: ghc-cache
+          #     paths: [~/.ghcup]
 
 
