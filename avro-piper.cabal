@@ -89,8 +89,6 @@ executable avro-decode
   hs-source-dirs:       app
   ghc-options:          -threaded -rtsopts -with-rtsopts=-N
   other-modules:        Options
-                        Paths_avro_piper
-  autogen-modules:      Paths_avro_piper
 
 
 test-suite avro-piper-test
@@ -117,6 +115,4 @@ test-suite avro-piper-test
   hs-source-dirs:       test
   ghc-options:          -threaded -rtsopts -with-rtsopts=-N
   other-modules:        SplitterSpec
-                        Paths_avro_piper
-  autogen-modules:      Paths_avro_piper
 
