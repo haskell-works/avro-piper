@@ -22,6 +22,8 @@ docker/rdkafka/
 
 ### Haskell ###
 dist
+dist-newstyle/
+.ghc.environment*
 cabal-dev
 *.o
 *.hi
