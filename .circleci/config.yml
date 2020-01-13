@@ -55,7 +55,7 @@ workflows:
             - run:
                 name: Prepare environment for release
                 command: |
-                  tar zcvf /tmp/artefacts/${CIRCLE_PROJECT_REPONAME}_${BUILD_ARCH}_${BUILD_OS_NAME}.tar.gz ./build/dist/
+                  tar zcvf /tmp/artefacts/${CIRCLE_PROJECT_REPONAME}_${BUILD_ARCH}_${BUILD_OS_NAME}.tar.gz -C ./build/dist/ ./
           filters:
             branches:
               only: master
