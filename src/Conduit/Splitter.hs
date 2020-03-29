@@ -1,18 +1,19 @@
 {-# LANGUAGE LambdaCase #-}
-module Conduit.Splitter
-where
 
-import           Conduit
-import           Control.Monad
-import qualified Data.ByteString             as StrictBS
-import           Data.ByteString.Builder     as BB
-import           Data.ByteString.Lazy        (ByteString, fromStrict, null, toStrict)
-import qualified Data.ByteString.Lazy        as BS
-import           Data.ByteString.Lazy.Search (split)
-import           Data.Foldable
-import           Data.Monoid
+module Conduit.Splitter where
 
-splitDelim :: Monad m => StrictBS.ByteString -> ConduitT ByteString ByteString m ()
+import Conduit
+import Control.Monad
+import Data.ByteString.Builder     as BB
+import Data.ByteString.Lazy        (ByteString, fromStrict, null, toStrict)
+import Data.ByteString.Lazy.Search (split)
+import Data.Foldable
+import Data.Monoid
+
+import qualified Data.ByteString      as BS
+import qualified Data.ByteString.Lazy as LBS
+
+splitDelim :: Monad m => BS.ByteString -> ConduitT ByteString ByteString m ()
 splitDelim delim = go mempty
   where
     go bldr =
@@ -28,5 +29,5 @@ splitDelim delim = go mempty
               yieldB (bldr <> BB.lazyByteString x)
               forM_ xs yieldNonEmpty
               go lastB
-    yieldNonEmpty bs = if not $ BS.null bs then yield bs else pure ()
+    yieldNonEmpty bs = if not $ LBS.null bs then yield bs else pure ()
     yieldB b = yieldNonEmpty $ BB.toLazyByteString b
