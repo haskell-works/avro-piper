@@ -6,14 +6,13 @@ import           Conduit
 import           Control.Monad
 import qualified Data.ByteString             as StrictBS
 import           Data.ByteString.Builder     as BB
-import           Data.ByteString.Lazy        (ByteString, fromStrict, null,
-                                              toStrict)
+import           Data.ByteString.Lazy        (ByteString, fromStrict, null, toStrict)
 import qualified Data.ByteString.Lazy        as BS
 import           Data.ByteString.Lazy.Search (split)
 import           Data.Foldable
 import           Data.Monoid
 
-splitDelim :: Monad m => StrictBS.ByteString -> Conduit ByteString m ByteString
+splitDelim :: Monad m => StrictBS.ByteString -> ConduitT ByteString ByteString m ()
 splitDelim delim = go mempty
   where
     go bldr =
