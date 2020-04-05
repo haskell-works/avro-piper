@@ -8,7 +8,6 @@ import Data.ByteString.Builder     as BB
 import Data.ByteString.Lazy        (ByteString, fromStrict, null, toStrict)
 import Data.ByteString.Lazy.Search (split)
 import Data.Foldable
-import Data.Monoid
 
 import qualified Data.ByteString      as BS
 import qualified Data.ByteString.Lazy as LBS
