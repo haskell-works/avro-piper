@@ -10,7 +10,7 @@ import           Data.Conduit.List
 import           Data.Monoid
 import           Test.Hspec
 
-{-# ANN module ("HLint: ignore Redundant do"  :: String) #-}
+{- HLINT ignore "Redundant do"        -}
 
 spec :: Spec
 spec = describe "SplitterSpec" $ do
